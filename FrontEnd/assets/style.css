@@ -318,3 +318,198 @@ label{
 	font-family: 'Work Sans' ;
 	font-size: 14px;
 }
+
+
+.modal{
+	position: fixed;
+	display: none;
+	align-items: center;
+	justify-content: center;
+	top: 0;
+	left:0;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0, 0, 0, 0.3);
+}
+
+.modal-wrapper{
+	overflow: auto;
+	width: 630px;
+	max-width: calc(100vw - 20px);
+	max-height: calc(100vw - 20px);
+	padding: 30px;
+	background-color: white;
+	border-radius: 10px;
+}
+
+.modal-wrapper i {
+	display: flex;
+	justify-self: end;
+	cursor: pointer;
+}
+
+.modal-wrapper h3{
+	display: flex;
+	margin: 20px 20px 40px;
+	justify-content: center;
+	font-size: 26px;
+	font-family: 'Work Sans' ;
+}
+
+.btn-container{
+	display: flex;
+	justify-content: center;
+
+	padding-top: 30px;
+}
+
+.modal-gallery-container{
+	display: grid;
+	grid-template-columns: repeat(5,1fr);
+	gap:  20px 10px;
+	padding: 50px;
+}
+
+.modal-gallery-container img{
+	width: 80px;
+	height: 110px;
+	object-fit: cover;
+}
+
+figure {
+  position: relative;
+  display: inline-block;
+}
+
+figure i {
+display: block;
+  position: absolute;
+  top: 5px;
+  right: 10px;
+  cursor: pointer;
+
+  background-color: black;
+  border-radius: 5px;
+  padding:  9px 5px;
+  color: white;
+}
+
+.modal-add {
+	display: none;
+}
+
+.modal-picto{
+	display: flex;
+	justify-content: space-between;
+}
+
+.upload-image{
+	width: 420px;
+	background-color: #E8F1F6;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	padding: 10px;
+	border-radius: 3px;
+}
+
+.upload-form i{
+	color: #B9C5CC;
+}
+
+.upload-form{
+	font-family: 'Work Sans' ;
+	width: 420px;
+	margin: auto;
+}
+
+.modal-formulaire{
+	width: 100%;
+}
+.modal-formulaire label, .modal-formulaire p{
+	margin-bottom: 5px;
+}
+
+.modal-formulaire input{
+	margin-bottom: 20px;
+}
+
+.add, .valider{
+	display: block;
+	font-family: 'Syne';
+	font-size: 16px;
+	font-weight: 700;
+	color: white;
+	padding: 10px 50px;
+	border-radius: 25px;
+	border: #1D6154, solid 1px;
+	background-color: #1D6154;
+}
+
+.add:hover, .valider{
+	transition: all 0.2s ease;
+	color: #1D6154;
+	background-color: white;
+}
+
+.add:hover, .valider:hover{
+	transition: all 0.2s ease;
+	color: #1D6154;
+	background-color: white;
+}
+
+.valider:disabled{
+	background-color: #A7A7A7 ;
+	border: #A7A7A7;
+	padding: 10px 90px;
+	color: white;
+	cursor: not-allowed;
+	
+}
+
+.modal-formulaire{
+	display: flex;
+	flex-direction: column;
+	padding: 50px 0;
+	border-bottom: solid #B3B3B3 1px;
+}
+
+.modal-formulaire input, select{
+	height: 50px;
+    font-size: 1.2em;
+    border: none;
+    box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
+	padding: 0 10px;
+}
+
+.add-photo{
+	display: block;
+	font-family: 'Work Sans' ;
+	font-size: 14px;
+	font-weight: 500;
+	color: #306685;
+	padding: 10px 50px;
+	border-radius: 25px;
+	border: #CBD6DC, solid 1px;
+	background-color: #CBD6DC;
+}
+
+.add-photo:hover{
+	display: block;
+	color: #306685;
+	background-color: #e9eff3;
+	transition: all .3s ease;
+}
+
+.upload-image p{
+	font-size: 10px;
+}
+
+.upload-section{
+
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 5px;
+
+}

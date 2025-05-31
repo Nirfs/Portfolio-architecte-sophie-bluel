@@ -13,7 +13,7 @@
 	<script src="https://kit.fontawesome.com/8a20e9a5bb.js" crossorigin="anonymous"></script>
 </head>
 <body>
-<div class="main-container">
+	<div class="main-container">
 		<header>
 			<h1>Sophie Bluel <span>Architecte d'intérieur</span></h1>
 			<nav>
@@ -65,6 +65,57 @@
 				</ul>
 			</nav>
 		</footer>
-</div>
+	</div>
+	
+	<aside id="modal1" class="modal" aria-hidden="true" role="dialog">
+        <div class="modal-wrapper">
+            <div class="modale">
+				<i class="fa-solid fa-xmark"></i>
+				<h3>Galerie photo</h3>
+				<div class="modal-gallery-container">
+
+				</div>
+				<div class="btn-container">
+				<button class ="btn-modal add" type="button">Ajouter une photo</button>
+			</div>
+			</div>
+        </div>
+    </aside>
+
+	<aside id="modal2" class="modal" aria-hidden="true" role="dialog">
+        <div class="modal-wrapper">
+            <div class="modale">
+				<div class="modal-picto">
+					<i class="fa-solid fa-arrow-left"></i>
+					<i class="fa-solid fa-xmark"></i>
+				</div>
+				<h3>Ajout photo</h3>
+				<form class="upload-form">
+					<div class="upload-image">
+						<div class = "upload-section">
+							<i class="fa-solid fa-image fa-5x"></i>
+							<label class ="btn-modal add-photo"  for="image-upload" class="custom-upload-button">
+								+ Ajouter photo
+							</label>
+							<input type="file" id="image-upload" name="image" accept=".jpg, .jpeg, .png" style="display: none;">
+							<p>jpg, png : 4mo max</p>
+						</div>
+						<div class="image-preview"></div>
+					</div>
+					<p id="error-message-upload"></p>
+					<div class="modal-formulaire">
+						<label for="titre">Titre</label>
+						<input type="text" name="titre" id="titre">
+						<p id="error-message-titre"></p>
+						<p>Catégorie</p>
+						<select for="email">Categorie</label>
+						</select>
+					</div>
+					<div class="btn-container valider-submit" >
+					<button class ="btn-modal valider" type="submit">Valider</button>
+					</div>
+				</form>
+        </div>
+    </aside>
 </body>
 </html>
