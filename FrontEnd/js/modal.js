@@ -1,3 +1,5 @@
+import{resetAddPhoto}from "./addWork.js"
+
 export function modalLogic(){
     openmodal();
     closemodal();
@@ -25,7 +27,7 @@ function closemodal(){
         closeIcon.addEventListener("click", ()=>{
             modals.forEach(modal =>{
                 modal.style.display = "none";
-
+                resetAddPhoto();
             })
         })
     })
@@ -34,7 +36,7 @@ function closemodal(){
             modal.addEventListener("click", (event)=>{
                 if (event.target === modal){
                     modal.style.display = "none";
-
+                    resetAddPhoto();
                 }
         })
     })

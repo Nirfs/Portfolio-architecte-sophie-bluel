@@ -21,5 +21,28 @@ export async function apiCategories(){
     }catch{
         console.log("Impossible de se connecter hors connexion");
     }
-
 }
+
+export async function apiUpload(formData) {
+    try {
+        const token = localStorage.getItem("token");
+
+        const rep = await fetch("http://localhost:5678/api/works", {
+            method: "POST",
+            headers: {
+                "Authorization": `Bearer ${token}`,
+            },
+            body: formData,
+        });
+
+        if (!rep.ok) {
+            throw new Error(`Erreur HTTP : ${rep.status}`);
+        }
+
+        return await rep.json();
+    } catch (error) {
+        console.error("Impossible de se connecter :");
+        return null;
+    }
+}
+
