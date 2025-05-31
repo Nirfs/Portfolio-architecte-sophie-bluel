@@ -16,3 +16,20 @@ export function creationTravaux(works){
         figure.appendChild(caption)
     });
 }
+
+
+export function creationBoutton(categories){
+    const buttonContainer = document.querySelector(".button-container");
+
+    const button = document.createElement("button");
+    button.innerText = "Tout"
+    button.dataset.id = "all"
+    buttonContainer.appendChild(button);
+
+    categories.forEach(categorie =>{
+        const button = document.createElement("button");
+        button.innerText = categorie.name
+        button.dataset.id = categorie.id
+        buttonContainer.appendChild(button);
+    })
+}
