@@ -33,3 +33,29 @@ export function creationBoutton(categories){
         buttonContainer.appendChild(button);
     })
 }
+
+
+export function filtrerTravaux(works){
+    const buttonsFiltres = document.querySelectorAll(".button-container button");
+
+    buttonsFiltres.forEach(buttonFiltre =>{
+        buttonFiltre.addEventListener("click", (event)=>{
+            const targetId = event.target.dataset.id;
+
+            let travauxAfficher;
+            
+            buttonsFiltres.forEach(button =>{
+                button.classList.remove("active")
+            })
+            event.target.classList.add("active")
+
+            if (targetId ==="all"){
+                travauxAfficher = works;
+            } else{
+                travauxAfficher = works.filter(work => work.category.id == targetId)
+            }
+            
+            creationTravaux(travauxAfficher);
+        })
+    })
+}

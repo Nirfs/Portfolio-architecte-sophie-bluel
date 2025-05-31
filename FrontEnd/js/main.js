@@ -1,5 +1,5 @@
 import {apiWorks, apiCategories} from "./api.js";
-import { creationTravaux, creationBoutton } from "./gallery.js";
+import { creationTravaux, creationBoutton, filtrerTravaux} from "./gallery.js";
 
 async function init(){
     const works = await apiWorks();
@@ -7,6 +7,7 @@ async function init(){
 
     creationBoutton(categories)
     creationTravaux(works);
+    filtrerTravaux(works);
 }
 
 init()
