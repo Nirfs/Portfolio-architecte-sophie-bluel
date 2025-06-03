@@ -1,5 +1,6 @@
 import { apiUpload } from "./api.js";
 import { deleteItem } from "./deleteWork.js";
+import{ tremblement }from'./animation.js';
 
 export function addWorksInit(categories){
     addCategories(categories);
@@ -20,6 +21,7 @@ function getFormElements() {
     };
 }
 
+//Ajouter les catégorie au select
 function addCategories(categories){
     const select = document.querySelector("select");
 
@@ -32,6 +34,7 @@ function addCategories(categories){
     });
 }
 
+// Aperçu de l’image sélectionnée
 function addPhoto(){
     const inputFile = document.getElementById("image-upload");
     const errorMessage = document.getElementById("error-message-upload");
@@ -39,26 +42,27 @@ function addPhoto(){
     const acceptFormat = ["image/png", "image/jpeg"];
 
         inputFile.addEventListener("change", () =>{
-        try{
-            const file = inputFile.files[0];     
+
+            const file = inputFile.files[0]; 
+            if (!file) return;
+
             const type = file.type;
             const size = file.size;
 
             if(size > maxSize){
-                errorMessage.style.display = "flex";
+                tremblement(errorMessage);
                 errorMessage.innerText = "Le fichier doit faire 4mo au maximum !"
                 return;
             }
 
             if(!acceptFormat.includes(type)){
-                errorMessage.style.display = "flex";
+                tremblement(errorMessage);
                 errorMessage.innerText = "Le fichier doit être au format png ou jpeg !"
                 return;
             }
 
-            console.log("tout est ok !");
             errorMessage.innerText = "";
-
+            //Permet de lire un fichier du type=file coté client dans le navigateur (avant de l'envoyer au serveur)
             const reader = new FileReader();
 
             reader.addEventListener("load", (event) =>{
@@ -68,23 +72,20 @@ function addPhoto(){
                 uploadSelection.style.display = "none";
                 imagePreview.style.display = "flex";
 
+                //Result est un propriété de FileReader
                 imagePreview.innerHTML = `<img src="${event.target.result}" alt="aperçu image" 
-                style="max-width: 100%; max-height: 200px; object-fit: contain;">`;
+                style="max-width: 100%; max-height: 156px; object-fit: contain;">`;
             });
 
             reader.readAsDataURL(file);
-        } 
-        catch{
-            console.error("Erreur lors de l'ajout de la photo :");
-            errorMessage.style.display = "flex";
-            errorMessage.innerText = "Une erreur est survenue lors du traitement du fichier.";
-            
-        }
-    })
+    });
 }
 
+// Envoi à l'API si le formulaire est valide
 function addPhotoToAPI(){
+    //destructuration d'objet, voir si utile dans d'autre script.
     const { uploadForm, fileInput, titleInput, categorieInput, buttonValider } = getFormElements();
+    const modal = document.getElementById("modal2");
 
     buttonValider.setAttribute("disabled", "true");
 
@@ -92,23 +93,25 @@ function addPhotoToAPI(){
         event.preventDefault();
 
         const file = fileInput.files[0];
-        const title = titleInput.value.length > 0;
+        const title = titleInput.value.trim().length > 0;
         const categorie = categorieInput.value;
 
         if(file && title && categorie){
 
             const formData = new FormData();
+
             formData.append("image", file);
             formData.append("title", titleInput.value);
             formData.append("category", categorie);
 
-            const result = await apiUpload(formData);
+            const resultat = await apiUpload(formData);
 
-            if(result){
-                console.log("Image uploadée :", result);
-                galleriesMaj(result)
-                resetAddPhoto()
-                deleteItem()
+            if(resultat){
+                console.log("Image uploadée :", resultat);
+                galleriesMaj(resultat);
+                resetAddPhoto();
+                deleteItem();
+                modal.style.display = "none";
             }
         }
     })
@@ -117,8 +120,7 @@ function addPhotoToAPI(){
 }
 
 export function resetAddPhoto(){
-    const { uploadSelection, imagePreview, fileInput, titleInput, categorieInput } = getFormElements();
-
+    const { uploadSelection, imagePreview, fileInput, titleInput, categorieInput, errorMessage } = getFormElements();
     uploadSelection.style.display = "flex";
     imagePreview.style.display = "none";
 
@@ -126,6 +128,7 @@ export function resetAddPhoto(){
         fileInput.value = "";
         titleInput.value = "";
         categorieInput.value = "";
+        errorMessage.innerText= ""
     }
 }
 
@@ -133,27 +136,27 @@ function buttonActivation(){
     const { uploadForm, fileInput, titleInput, categorieInput, buttonValider } = getFormElements();
 
     uploadForm.addEventListener("change", ()=>{
-        const buttonValider = document.querySelector(".valider")
         
         buttonValider.setAttribute("disabled", "true");
-            const categorie = categorieInput.value;
-            const title = titleInput.value.length > 0;
-            const file = fileInput.files[0];
+        const categorie = categorieInput.value;
+        const title = titleInput.value.trim().length > 0;
+        const file = fileInput.files[0];
 
-            if(categorie && title && file){
-                buttonValider.removeAttribute("disabled");
-            } else{
-                buttonValider.setAttribute("disabled", "true");
-            }
+        if(categorie && title && file){
+            buttonValider.removeAttribute("disabled");
+        } else{
+            buttonValider.setAttribute("disabled", "true");
+        }
     })
 }
 
 function galleriesMaj(works){
-      //Galerie principale
+    //Galerie principale
     const gallery = document.querySelector(".gallery");
 
     const figure = document.createElement("figure");
     figure.dataset.id = works.id;
+    figure.classList.add("visible"); 
 
     const img = document.createElement("img");
     img.src = works.imageUrl;

@@ -1,12 +1,14 @@
 import{resetAddPhoto}from "./addWork.js"
 
+//rassemble les fonction à appeler dans le main
 export function modalLogic(){
-    openmodal();
-    closemodal();
+    openModal();
+    closeModal();
     SwitchModal()
 }
 
-function openmodal(){
+//ouverture de la modale
+function openModal(){
     const modal = document.getElementById("modal1");
     const openButton = document.querySelector(".header-modifier a");
 
@@ -15,11 +17,10 @@ function openmodal(){
     openButton.addEventListener("click", ()=>{
         modal.style.display = "flex";
     })
-    
-
 }
 
-function closemodal(){
+//dermeture de la modal par la croix ou par le click background
+function closeModal(){
     const modals = document.querySelectorAll(".modal");
     const closeIcons = document.querySelectorAll(".fa-xmark");
 
@@ -42,6 +43,8 @@ function closemodal(){
     })
 }
 
+
+//switch de modal en logic flex ou none
 function SwitchModal(){
     const addButton = document.querySelector(".add");
     const modal1 = document.getElementById("modal1");

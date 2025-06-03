@@ -12,6 +12,7 @@ async function init(){
     creationBoutton(categories)
     creationTravaux(works);
     filtrerTravaux(works);
+
     loginOk();
 
     addGalery(works);
@@ -19,6 +20,11 @@ async function init(){
     modalLogic();
 
     addWorksInit(categories);
+
+console.log(works);
+
+
+
 }
 
 init()

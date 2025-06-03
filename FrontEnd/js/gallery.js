@@ -1,40 +1,49 @@
+import { galleryAnimation } from "./animation.js";
+
+// Génère et affiche les travaux dans la galerie
 export function creationTravaux(works){
-    const galleryContainer = document.querySelector(".gallery")
+
+    const galleryContainer = document.querySelector(".gallery");
     galleryContainer.innerHTML = "";
+
     works.forEach(work => {
         const figure = document.createElement("figure");
         figure.dataset.id = work.id;
 
         const image = document.createElement("img");
         image.src = work.imageUrl;
+        image.alt = work.title;
 
         const caption = document.createElement("figcaption");
-        caption.innerText = work.title
+        caption.innerText = work.title;
 
         galleryContainer.appendChild(figure);
-        figure.appendChild(image)
-        figure.appendChild(caption)
+        figure.appendChild(image, caption);
+
+        galleryAnimation(figure);
     });
 }
 
-
+// Crée les boutons de filtre à partir des catégories de l'API
 export function creationBoutton(categories){
     const buttonContainer = document.querySelector(".button-container");
 
-    const button = document.createElement("button");
-    button.innerText = "Tout"
-    button.dataset.id = "all"
-    buttonContainer.appendChild(button);
+    //Tout
+    const AllButton = document.createElement("button");
+    AllButton.innerText = "Tout";
+    AllButton.dataset.id = "all";
+    buttonContainer.appendChild(AllButton);
 
-    categories.forEach(categorie =>{
+    //categorie API
+    categories.forEach(categorie => {
         const button = document.createElement("button");
-        button.innerText = categorie.name
-        button.dataset.id = categorie.id
+        button.innerText = categorie.name;
+        button.dataset.id = categorie.id;
         buttonContainer.appendChild(button);
-    })
+    });
 }
 
-
+// Gère le filtrage des travaux selon le bouton cliqué
 export function filtrerTravaux(works){
     const buttonsFiltres = document.querySelectorAll(".button-container button");
 
@@ -42,18 +51,14 @@ export function filtrerTravaux(works){
         buttonFiltre.addEventListener("click", (event)=>{
             const targetId = event.target.dataset.id;
 
-            let travauxAfficher;
-            
-            buttonsFiltres.forEach(button =>{
-                button.classList.remove("active")
-            })
+            // Gestion de la classe "active" 
+            buttonsFiltres.forEach(button =>{ button.classList.remove("active") })
             event.target.classList.add("active")
 
-            if (targetId ==="all"){
-                travauxAfficher = works;
-            } else{
-                travauxAfficher = works.filter(work => work.category.id == targetId)
-            }
+            //voir opérateur ternair dans le cours
+            const travauxAfficher = targetId ==="all"
+                ? works
+                : works.filter(work => work.category.id == targetId);
             
             creationTravaux(travauxAfficher);
         })
