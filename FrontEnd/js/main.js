@@ -20,11 +20,6 @@ async function init(){
     modalLogic();
 
     addWorksInit(categories);
-
-console.log(works);
-
-
-
 }
 
 init()

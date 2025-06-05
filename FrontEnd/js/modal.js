@@ -19,7 +19,7 @@ function openModal(){
     })
 }
 
-//dermeture de la modal par la croix ou par le click background
+//fermeture de la modal par la croix ou par le click background
 function closeModal(){
     const modals = document.querySelectorAll(".modal");
     const closeIcons = document.querySelectorAll(".fa-xmark");
@@ -42,7 +42,6 @@ function closeModal(){
         })
     })
 }
-
 
 //switch de modal en logic flex ou none
 function SwitchModal(){

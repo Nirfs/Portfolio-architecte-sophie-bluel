@@ -7,7 +7,6 @@ export function deleteItem(){
     deleteIcons.forEach(deleteIcon =>{
         deleteIcon.addEventListener("click", async (event)=>{
 
-            const token = localStorage.getItem("token");
             const figure = event.target.closest("figure");
             const workId = figure.dataset.id;
 
