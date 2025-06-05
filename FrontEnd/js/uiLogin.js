@@ -1,3 +1,5 @@
+import { logout } from "./auth.js";
+
 //Creation de la bannière
 function banniere(){
     const banniereDiv = document.createElement("div");
@@ -22,12 +24,6 @@ function changeButton(){
     header.appendChild(h2);
 
     header.innerHTML += `<a><i class="fa-solid fa-pen-to-square"></i><p>modifier</p></a>`
-}
-
-//retrait du token et rechargement a la déco
-function logout(){
-    localStorage.removeItem("token");
-    window.location.reload();
 }
 
 //Logic de connexion reussit
