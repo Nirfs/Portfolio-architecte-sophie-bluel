@@ -11,7 +11,7 @@ function banniere(){
 }
 
 //Changement du boutton login en logout
-function changeButton(){
+function ModifierButton(){
     const buttonContainer = document.querySelector(".button-container");
     buttonContainer.innerHTML = ""
 
@@ -40,7 +40,7 @@ export function loginOk(){
         log.addEventListener("click", logout);
 
         banniere();
-        changeButton();
+        ModifierButton();
     } else{
         header.classList.remove("Headerlogin");
         log.innerText = "login";
