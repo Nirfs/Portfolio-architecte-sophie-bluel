@@ -27,10 +27,10 @@ if(submit){
             window.location.href ="index.html";
         } catch (error){
             if (error.message === "401"){
-                MessageErreur(errorMessage, "Mot de passe incorrect")
+                MessageErreur(errorMessage, "Le mot de passe est incorrect")
             }
             else if (error.message === "404"){
-                MessageErreur(errorMessage, "Nom d'utilisateur incorrect")
+                MessageErreur(errorMessage, "Le nom d'utilisateur est incorrect")
             } 
             else {
                 MessageErreur(errorMessage, error.message)

@@ -39,15 +39,14 @@ export async function loginUser(email, password) {
 			body: JSON.stringify({ email, password }),
 		});
 
-		const data = await rep.json();
-
 		if (!rep.ok) {
-			throw new Error(data.message);
+			throw new Error(rep.status);
 		}
-
-		return data;
+		return await rep.json();
 	} catch (error) {
-		console.error("Erreur API :", error.message)
+		console.error(error.message);
+        throw error;
+        
 	}
 }
 
@@ -59,6 +58,7 @@ export async function loginUser(email, password) {
 export async function deleteWork(workId) {
     try {
         const token = localStorage.getItem("token");
+        
         const rep = await fetch(`http://localhost:5678/api/works/${workId}`, {
             method: "DELETE",
             headers: {
