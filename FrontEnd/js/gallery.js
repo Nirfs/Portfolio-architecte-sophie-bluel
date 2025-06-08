@@ -18,8 +18,8 @@ export function creationTravaux(works){
         caption.innerText = work.title;
 
         galleryContainer.appendChild(figure);
-        figure.appendChild(image, caption);
-
+        figure.appendChild(image);
+        figure.appendChild(caption);
         galleryAnimation(figure);
     });
 }

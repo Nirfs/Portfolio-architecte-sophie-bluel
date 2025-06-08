@@ -7,7 +7,7 @@ export async function apiWorks(){
             throw new Error("Impossible de se recuperer les travaux de l'API");
         }
         return await rep.json();
-    }catch{
+    }catch(error){
         console.error("Erreur :", error.message);
     }
 }
@@ -20,7 +20,7 @@ export async function apiCategories(){
             throw new Error("Impossible de se recuperer les categories de l'API");
         }
         return await rep.json();
-    }catch{
+    }catch(error){
         console.error("Erreur :", error.message);
     }
 }

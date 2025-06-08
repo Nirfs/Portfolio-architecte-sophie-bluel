@@ -62,6 +62,7 @@ function addPhoto(){
             }
 
             errorMessage.innerText = "";
+
             //Permet de lire un fichier du type=file coté client dans le navigateur (avant de l'envoyer au serveur)
             const reader = new FileReader();
 
@@ -87,7 +88,7 @@ function addPhotoToAPI(){
     const { uploadForm, fileInput, titleInput, categorieInput, buttonValider } = getFormElements();
     const modal = document.getElementById("modal2");
 
-    buttonValider.setAttribute("disabled", "true");
+    buttonValider.setAttribute("disabled");
 
     uploadForm.addEventListener("submit", async (event)=>{
         event.preventDefault();
