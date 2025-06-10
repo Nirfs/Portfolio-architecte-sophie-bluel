@@ -88,7 +88,7 @@ function addPhotoToAPI(){
     const { uploadForm, fileInput, titleInput, categorieInput, buttonValider } = getFormElements();
     const modal = document.getElementById("modal2");
 
-    buttonValider.setAttribute("disabled");
+    buttonValider.disabled = true;
 
     uploadForm.addEventListener("submit", async (event)=>{
         event.preventDefault();
